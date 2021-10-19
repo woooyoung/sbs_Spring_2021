@@ -11,38 +11,59 @@ import com.sbs.exam.demo.vo.Article;
 
 @Controller
 public class UsrArticleController {
+	// 인스턴스 변수
 	private int articlesLastId;
 	private List<Article> articles;
 
+	// 생성자
 	public UsrArticleController() {
 		articlesLastId = 0;
 		articles = new ArrayList<>();
-		
+
 		makeTestData();
 	}
 
+	// 서비스 메서드 시작
 	private void makeTestData() {
-		for(int i = 1; i <= 10; i++) {
+		for (int i = 1; i <= 10; i++) {
 			String title = "제목" + i;
 			String body = "내용" + i;
-			writeArticle(title,body);
+			writeArticle(title, body);
 		}
 	}
-	
+
 	public Article writeArticle(String title, String body) {
-		int id = articlesLastId + 1; 
+		int id = articlesLastId + 1;
 		Article article = new Article(id, title, body);
 
 		articles.add(article);
 		articlesLastId = id;
-		
+
 		return article;
 	}
 
+	private Article getArticle(int id) {
+		for (Article article : articles) {
+			if (article.getId() == id) {
+				return article;
+			}
+		}
+		return null;
+	}
+	
+	private void deleteArticle(int id) {
+		Article article = getArticle(id);
+		
+		articles.remove(article);
+	}
+
+	// 서비스 메서드 끝
+
+	// 액션 메서드 시작
 	@RequestMapping("/usr/article/doAdd")
 	@ResponseBody
 	public Article doAdd(String title, String body) {
-		Article article = writeArticle(title,body);
+		Article article = writeArticle(title, body);
 
 		return article;
 	}
@@ -52,11 +73,22 @@ public class UsrArticleController {
 	public List<Article> getArticles() {
 		return articles;
 	}
-	
+
 	@RequestMapping("/usr/article/doDelete")
 	@ResponseBody
 	public String doDelete(int id) {
+		Article article = getArticle(id);
+
+		if (article == null) {
+			return id + "번 게시물은 존재하지 않습니다.";
+		}
+		
+		deleteArticle(id);
 
 		return id + "번 게시물을 삭제했습니다.";
 	}
+	// 액션메서드 끝
+
+	
+
 }
