@@ -14,8 +14,7 @@ import com.sbs.exam.demo.vo.Article;
 public class UsrArticleController {
 	@Autowired
 	private ArticleService articleService;
-	
-	
+
 	// 액션 메서드 시작
 	@RequestMapping("/usr/article/doAdd")
 	@ResponseBody
@@ -30,16 +29,16 @@ public class UsrArticleController {
 	public List<Article> getArticles() {
 		return articleService.getArticles();
 	}
-	
+
 	@RequestMapping("/usr/article/getArticle")
 	@ResponseBody
 	public Object getArticleAction(int id) {
 		Article article = articleService.getArticle(id);
-		
-		if( article == null) {
+
+		if (article == null) {
 			return id + "번 게시물은 존재하지 않습니다.";
 		}
-		
+
 		return article;
 	}
 
@@ -70,10 +69,7 @@ public class UsrArticleController {
 
 		return id + "번 게시물을 수정했습니다";
 	}
-	
-	
+
 	// 액션메서드 끝
-
-
 
 }
