@@ -9,8 +9,8 @@ import com.sbs.exam.demo.vo.Article;
 
 @Component
 public class ArticleRepository {
-	private int articlesLastId;
 	private List<Article> articles;
+	private int articlesLastId;
 
 	public ArticleRepository() {
 		articlesLastId = 0;
