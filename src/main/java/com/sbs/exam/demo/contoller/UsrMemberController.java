@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.sbs.exam.demo.service.MemberService;
 import com.sbs.exam.demo.util.Ut;
 import com.sbs.exam.demo.vo.Member;
+import com.sbs.exam.demo.vo.ResultData;
 
 @Controller
 public class UsrMemberController {
@@ -19,46 +20,41 @@ public class UsrMemberController {
 
 	@RequestMapping("/usr/member/doJoin")
 	@ResponseBody
-	public Object doJoin(String loginId, String loginPw, String name, String nickname, String cellphoneNo,
+	public ResultData doJoin(String loginId, String loginPw, String name, String nickname, String cellphoneNo,
 			String email) {
 
 		if (Ut.empty(loginId)) {
-			return "loginId(을)를 입력해주세요.";
+			return ResultData.from("F-1", "loginId을(를) 입력해주세요.");
 		}
 		if (Ut.empty(loginPw)) {
-			return "loginPw(을)를 입력해주세요.";
+			return ResultData.from("F-2", "loginPw을(를) 입력해주세요.");
 		}
 		if (Ut.empty(name)) {
-			return "name(을)를 입력해주세요.";
+			return ResultData.from("F-3", "name을(를) 입력해주세요.");
 		}
 		if (Ut.empty(nickname)) {
-			return "nickname(을)를 입력해주세요.";
+			return ResultData.from("F-4", "nickname을(를) 입력해주세요.");
 		}
 
 		if (Ut.empty(cellphoneNo)) {
-			return "cellphoneNo(을)를 입력해주세요.";
+			return ResultData.from("F-5", "cellphoneNo을(를) 입력해주세요.");
 		}
 
 		if (Ut.empty(email)) {
-			return "email(을)를 입력해주세요.";
+			return ResultData.from("F-6", "email을(를) 입력해주세요.");
+		}
+		// S-1
+		// 회원가입이 완료되었습니다.
+
+		ResultData joinRd = memberService.join(loginId, loginPw, name, nickname, cellphoneNo, email);
+
+		if (joinRd.isFail()) {
+			return joinRd;
 		}
 
-		int id = memberService.join(loginId, loginPw, name, nickname, cellphoneNo, email);
-		// resultCode
-		// msg
-		//
+		Member member = memberService.getMemberById((int) joinRd.getData1());
+		return ResultData.newData(joinRd, member);
 
-		if (id == -1) {
-			return Ut.f("(%s)(은)는 사용중인 로그인 아이디입니다.", loginId);
-		}
-
-		if (id == -2) {
-			return Ut.f("(%s)와 (%s)(은)는 이미 가입 된 회원의 이름과 이메일 입니다.", name, email);
-		}
-
-		Member member = memberService.getMemberById(id);
-
-		return member;
 	}
 
 }
