@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+  pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -8,6 +9,15 @@
 </head>
 <body>
   <h1>List</h1>
+  
+  <header>
+    <a href="/">사이트A</a>
+
+    <ul>
+      <li><a href="/">홈</a></li>
+      <li><a href="/usr/article/list">리스트</a></li>
+    </ul>
+  </header>
 
   <hr />
   <table border="1">
