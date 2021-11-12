@@ -1,4 +1,4 @@
-package com.sbs.exam.demo.contoller;
+package com.sbs.exam.demo.vo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
