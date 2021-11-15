@@ -14,15 +14,14 @@ public class Rq {
 	private boolean isLogined;
 	@Getter
 	private int loginedMemberId;
-	
 	private HttpServletRequest req;
 	private HttpServletResponse res;
-	private HttpSession httpSession;	
+	private HttpSession httpSession;
 	public Rq(HttpServletRequest req, HttpServletResponse res) {
 
-		this.httpSession = req.getSession();
 		this.req = req;
 		this.res = res;
+		this.httpSession = req.getSession();
 		
 		boolean isLogined = false;
 		int loginedMemberId = 0;
@@ -37,10 +36,11 @@ public class Rq {
 	}
 
 	public void printHistoryBackJs() {
+		
 		res.setContentType("text/html; charset=utf-8");
 		print("<script>");
-		print("		alert('로그인이 필요합니다.');");
-		print("		history.back();");
+		print("alert('로그인 후 이용해주세요');");
+		print("history.back();");
 		print("</script>");
 		
 	}
@@ -52,5 +52,4 @@ public class Rq {
 			e.printStackTrace();
 		}
 	}
-	
 }
