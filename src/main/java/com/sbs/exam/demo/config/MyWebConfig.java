@@ -11,15 +11,18 @@ import com.sbs.exam.demo.interceptor.NeedLoginInterceptor;
 
 @Configuration
 public class MyWebConfig implements WebMvcConfigurer {
-
+	// BeforeActionInterceptor 인터셉터 불러오기
 	@Autowired
 	BeforeActionInterceptor beforeActionInterceptor;
+	
+	// needLoginInterceptor 인터셉터 불러오기
 	@Autowired
 	NeedLoginInterceptor needLoginInterceptor;
 
+	// 인터셉터를 적용하는 메서드
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-
+		
 		InterceptorRegistration interceptroRegistration = registry.addInterceptor(beforeActionInterceptor);
 		interceptroRegistration.addPathPatterns("/**").excludePathPatterns("/resource/**");
 
