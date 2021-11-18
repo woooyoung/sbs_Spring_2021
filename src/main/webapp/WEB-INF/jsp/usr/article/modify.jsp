@@ -51,15 +51,14 @@
             <th>내용</th>
             <td>
               <textarea class="w-full textarea textarea-bordered"
-                " name="body" rows="10">${article.body}</textarea>
+                name="body" rows="10">${article.body}</textarea>
             </td>
           </tr>
           <tr>
             <th>수정</th>
             <td>
               <button type="submit" class="btn btn-ghost btn-outline">수정</button>
-              <button type="button" class="btn btn-ghost btn-outline"
-                onclick="history.back();">뒤로가기</button>
+
             </td>
           </tr>
         </tbody>
