@@ -19,8 +19,10 @@ public class BeforeActionInterceptor implements HandlerInterceptor {
 
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler) throws Exception {
-
+		
 		rq.initOnBeforeActionInterceptor();
+
+//		System.out.println(rq.isLogined());
 
 		return HandlerInterceptor.super.preHandle(req, resp, handler);
 	}
