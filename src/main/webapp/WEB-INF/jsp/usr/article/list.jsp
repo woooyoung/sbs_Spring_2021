@@ -16,9 +16,9 @@
       </div>
       <div class="flex-grow"></div>
       <form class="flex">
-      
+
         <input type="hidden" name="boardId" value="${param.boardId }" />
-        
+
         <select data-value="${param.searchKeywordTypeCode }"
           name="searchKeywordTypeCode"
           class="select select-ghost select-bordered">
@@ -33,8 +33,9 @@
           class="ml-2 w-96 input input-bordered"
           placeholder="검색어를 입력해주세요" maxlength="20"
           value="${param.searchKeyword }" />
-          
-          <button class="ml-3 btn btn-outline btn-ghost" type="submit"> 검색</button>
+
+        <button class="ml-3 btn btn-outline btn-ghost" type="submit">
+          검색</button>
       </form>
 
     </div>
@@ -93,7 +94,7 @@
           <a class="btn btn-sm" href="${pageBaseUri }&page=1">1</a>
           <c:if test="${startPage > 2}">
             <a class="btn btn-sm btn-disabled">...</a>
-          </c:if>
+          </c:if>a
         </c:if>
         <c:forEach begin="${startPage }" end="${endPage }" var="i">
           <a class="btn btn-sm ${page == i ? 'btn-active' : ''}"
