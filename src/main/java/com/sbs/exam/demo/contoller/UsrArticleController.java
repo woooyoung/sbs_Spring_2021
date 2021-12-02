@@ -65,7 +65,7 @@ public class UsrArticleController {
 			@RequestParam(defaultValue = "") String searchKeyword, @RequestParam(defaultValue = "1") int page) {
 
 		Board board = boardService.getBoardById(boardId);
-		
+
 		System.out.println("board : " + board);
 
 		if (board == null) {
@@ -96,6 +96,10 @@ public class UsrArticleController {
 		Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
 
 		model.addAttribute("article", article);
+
+		boolean actorCanMakeReactionPoint = articleService.actorCanMakeReactionPoint(rq.getLoginedMemberId(), id);
+
+		model.addAttribute("actorCanMakeReactionPoint", actorCanMakeReactionPoint);
 
 		return "usr/article/detail";
 	}
